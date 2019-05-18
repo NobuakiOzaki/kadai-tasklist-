@@ -16,10 +16,10 @@ class TasksController < ApplicationController
    @task = Task.new(task_params)
    
    if @task.save
-     flash[:success] = "項目が正常に追加されました"
+     flash[:success] = "タスクリストが正常に追加されました"
      redirect_to @task
    else
-     flash.now[:danger] = "項目が追加できませんでした"
+     flash.now[:danger] = "タスクリストが追加できませんでした"
      render :new
    end
   end
@@ -29,10 +29,10 @@ class TasksController < ApplicationController
   
   def update
    if @task.update(task_params)
-     flash[:success] = "項目は正常に変更されました"
+     flash[:success] = "タスクリストは正常に変更されました"
       redirect_to @task
    else
-     flash.now[:danger] = "項目は変更されませんでした"
+     flash.now[:danger] = "タスクリストは変更されませんでした"
      render :edit
    end
   end
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   def destroy
    @task.destroy
   
-   flash[:success] = "項目は正常に削除されました"
+   flash[:success] = "タスクリストは正常に削除されました"
    redirect_to tasks_url
   end
   
@@ -51,6 +51,6 @@ class TasksController < ApplicationController
   end
   
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content, :status)
   end
 end
