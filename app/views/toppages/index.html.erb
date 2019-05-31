@@ -1,6 +1,21 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
-<% else %>
+  <div class="row">
+    <aside class="col-sm-4">
+      <%= form_with(model: @task, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :status, "ステータス" %>
+          <%= f.text_field :status, class: 'form-control mb-4' %>
+          <%= f.label :content, "項目(コンテンツ)" %>
+          <%= f.text_field :content, class: 'form-control mb-4' %>
+        </div>
+        <%= f.submit '追記', class: 'btn btn-primary btn-block mb-3' %>
+      <% end %>
+    </aside>
+    <div class="col-sm-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
+  </div>
+  <% else %>
   <div class="center jumbotron">
     <div class="text-center">
       <h1>Welcome to the kadai-tasklist</h1>
